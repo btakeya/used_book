@@ -2,6 +2,8 @@ import requests
 from urllib.parse import urlencode
 from urllib.request import urlretrieve
 
+from BookParser import *
+
 class RequestBuilder(object):
     _domain = 'http://off.aladin.co.kr'
     _path = 'usedstore/wsearchresult.aspx'
@@ -41,4 +43,5 @@ if __name__ == '__main__':
                .set_store('bundang')
     res = req_builder.get()
 
-
+    book_parser = BookParser(res)
+    book_parser.parse()
