@@ -5,6 +5,7 @@ from urllib.request import urlretrieve
 from BookParser import *
 from Category import *
 
+
 class RequestBuilder(object):
     _domain = 'http://off.aladin.co.kr'
     _path = 'usedstore/wsearchresult.aspx'
@@ -12,7 +13,6 @@ class RequestBuilder(object):
     PARAM_NAME_KEYWORD = 'SearchWord'
     PARAM_NAME_X = 'x'
     PARAM_NAME_Y = 'Y'
-
 
     def __init__(self):
         self.url_params = {}
@@ -41,7 +41,6 @@ if __name__ == '__main__':
     req_builder = RequestBuilder()
     branches = {'STORE_NAME_GANGNAM': Category.stores['STORE_NAME_GANGNAM'],
                 'STORE_NAME_BUNDANG': Category.stores['STORE_NAME_BUNDANG']}
-
 
     for name, code in branches.items():
         req_builder.set_params(req_builder.PARAM_NAME_KEYWORD, keyword) \

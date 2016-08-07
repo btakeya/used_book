@@ -1,5 +1,6 @@
 from bs4 import *
 
+
 class BookParser(object):
     def __init__(self, result):
         self.page = result.text
