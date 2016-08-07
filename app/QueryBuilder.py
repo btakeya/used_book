@@ -39,8 +39,11 @@ class RequestBuilder(object):
 if __name__ == '__main__':
     keyword = 'hello'
     req_builder = RequestBuilder()
+    branches = {'STORE_NAME_GANGNAM': Category.stores['STORE_NAME_GANGNAM'],
+                'STORE_NAME_BUNDANG': Category.stores['STORE_NAME_BUNDANG']}
 
-    for name, code in Category.stores.items():
+
+    for name, code in branches.items():
         req_builder.set_params(req_builder.PARAM_NAME_KEYWORD, keyword) \
                    .set_params(req_builder.PARAM_NAME_X, 1) \
                    .set_params(req_builder.PARAM_NAME_Y, 2) \
