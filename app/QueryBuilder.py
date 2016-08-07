@@ -37,7 +37,7 @@ class RequestBuilder(object):
 
 
 if __name__ == '__main__':
-    keyword = 'hello'
+    keyword = '화폐전쟁'.encode('euc-kr')
     req_builder = RequestBuilder()
     branches = {'STORE_NAME_GANGNAM': Category.stores['STORE_NAME_GANGNAM'],
                 'STORE_NAME_BUNDANG': Category.stores['STORE_NAME_BUNDANG']}
