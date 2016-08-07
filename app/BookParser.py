@@ -17,5 +17,4 @@ class BookParser(object):
                     if len(line) > 0:
                         results.append(line)
 
-        for result in results:
-            print(result)
+        return results

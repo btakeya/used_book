@@ -3,6 +3,7 @@ from urllib.parse import urlencode
 from urllib.request import urlretrieve
 
 from BookParser import *
+from Category import *
 
 class RequestBuilder(object):
     _domain = 'http://off.aladin.co.kr'
@@ -36,12 +37,19 @@ class RequestBuilder(object):
 
 
 if __name__ == '__main__':
+    keyword = 'hello'
     req_builder = RequestBuilder()
-    req_builder.set_params(req_builder.PARAM_NAME_KEYWORD, 'hello') \
-               .set_params(req_builder.PARAM_NAME_X, 1) \
-               .set_params(req_builder.PARAM_NAME_Y, 2) \
-               .set_store('bundang')
-    res = req_builder.get()
+    for name, code in Category.stores.items():
+        req_builder.set_params(req_builder.PARAM_NAME_KEYWORD, keyword) \
+                   .set_params(req_builder.PARAM_NAME_X, 1) \
+                   .set_params(req_builder.PARAM_NAME_Y, 2) \
+                   .set_store(code)
+        res = req_builder.get()
 
-    book_parser = BookParser(res)
-    book_parser.parse()
+        book_parser = BookParser(res)
+        found = book_parser.parse()
+
+        print(name)
+        for line in found:
+            print(line)
+        print()
