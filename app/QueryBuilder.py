@@ -38,7 +38,8 @@ class RequestBuilder(object):
 
 
 if __name__ == '__main__':
-    keyword = sys.argv[1].encode('euc-kr')
+    raw_keyword = sys.argv[1]
+    keyword = raw_keyword.encode('euc-kr')
     req_builder = RequestBuilder()
     branches = {'STORE_NAME_GANGNAM': Category.stores['STORE_NAME_GANGNAM'],
                 'STORE_NAME_BUNDANG': Category.stores['STORE_NAME_BUNDANG']}
