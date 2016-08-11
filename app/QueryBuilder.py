@@ -3,8 +3,8 @@ import requests
 from urllib.parse import urlencode
 from urllib.request import urlretrieve
 
-from BookParser import *
-from Category import *
+from .BookParser import *
+from .Category import *
 
 
 class RequestBuilder(object):
