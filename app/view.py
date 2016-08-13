@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from urllib.parse import unquote
 
 from .QueryBuilder import *
 
@@ -8,9 +9,9 @@ def index_page(request):
     response = render(request, 'page/index.html', {})
     return response
 
-def get_used_book(request):
-    raw_keyword = '화폐전쟁'
-    keyword = raw_keyword.encode('euc-kr')
+def get_used_book(request, keyword='key'):
+    raw_keyword = request.GET.get('keyword')
+    euckr_keyword = raw_keyword.encode('euc-kr')
     req_builder = RequestBuilder()
     branches = {'STORE_NAME_GANGNAM': Category.stores['STORE_NAME_GANGNAM'],
                 'STORE_NAME_BUNDANG': Category.stores['STORE_NAME_BUNDANG']}
@@ -18,7 +19,7 @@ def get_used_book(request):
     response_str = ['<p>']
 
     for name, code in branches.items():
-        req_builder.set_params(req_builder.PARAM_NAME_KEYWORD, keyword) \
+        req_builder.set_params(req_builder.PARAM_NAME_KEYWORD, euckr_keyword) \
                    .set_params(req_builder.PARAM_NAME_X, 1) \
                    .set_params(req_builder.PARAM_NAME_Y, 2) \
                    .set_store(code)
