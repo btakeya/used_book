@@ -1,6 +1,10 @@
 from bs4 import *
 
 
+logging.basicConfig(level=logging.INFO)
+_log = logging.getLogger(__name__)
+
+
 class BookParser(object):
     def __init__(self, result):
         self.page = result.text

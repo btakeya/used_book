@@ -1,10 +1,15 @@
 import sys
 import requests
+import logging
 from urllib.parse import urlencode
 from urllib.request import urlretrieve
 
-from .BookParser import *
-from .Category import *
+from BookParser import *
+from Category import *
+
+
+logging.basicConfig(level=logging.INFO)
+log = logging.getLogger(__name__)
 
 
 class RequestBuilder(object):
@@ -54,7 +59,7 @@ if __name__ == '__main__':
         book_parser = BookParser(res)
         found = book_parser.parse()
 
-        print(name)
+        log.info('')
         for line in found:
-            print(line)
-        print()
+            log.info(line)
+        log.info('')
