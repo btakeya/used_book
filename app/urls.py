@@ -19,5 +19,6 @@ from . import view
 
 urlpatterns = [
 #    url(r'^admin/', admin.site.urls),
-    url('^$', view.get_used_book),
+    url(r'^find/', view.get_used_book),
+    url('^$', view.index_page),
 ]

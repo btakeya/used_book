@@ -1,6 +1,12 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 from .QueryBuilder import *
+
+
+def index_page(request):
+    response = render(request, 'page/index.html', {})
+    return response
 
 def get_used_book(request):
     raw_keyword = '화폐전쟁'
