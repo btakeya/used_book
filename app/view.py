@@ -1,3 +1,4 @@
+import logging
 from django.http import HttpResponse
 from django.shortcuts import render
 from urllib.parse import unquote
@@ -5,13 +6,20 @@ from urllib.parse import unquote
 from .QueryBuilder import *
 
 
+logging.basicConfig(level=logging.DEBUG)
+log = logging.getLogger(__name__)
+
+
 def index_page(request):
     response = render(request, 'page/index.html', {})
     return response
 
 def get_used_book(request, keyword='key'):
+    log.info('Keyword raw: {}'.format(keyword))
     raw_keyword = request.GET.get('keyword')
+    log.info('Keyword in: {}'.format(raw_keyword))
     euckr_keyword = raw_keyword.encode('euc-kr')
+    log.info('Keyword encoded: {}'.format(euckr_keyword))
     req_builder = RequestBuilder()
     branches = {'STORE_NAME_GANGNAM': Category.stores['STORE_NAME_GANGNAM'],
                 'STORE_NAME_BUNDANG': Category.stores['STORE_NAME_BUNDANG']}
@@ -28,6 +36,7 @@ def get_used_book(request, keyword='key'):
         book_parser = BookParser(res)
         found = book_parser.parse()
 
+        log.info('Searching for books in Branch {}'.format(name))
         response_str.append(name)
         for line in found:
             response_str.append(line)
