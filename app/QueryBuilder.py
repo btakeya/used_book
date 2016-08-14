@@ -59,7 +59,7 @@ if __name__ == '__main__':
         book_parser = BookParser(res)
         found = book_parser.parse()
 
-        log.info('')
+        log.info('[UB]')
         for line in found:
-            log.info(line)
-        log.info('')
+            log.info('[UB] {}'.format(line))
+        log.info('[UB]')

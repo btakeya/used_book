@@ -15,11 +15,11 @@ def index_page(request):
     return response
 
 def get_used_book(request, keyword='key'):
-    log.info('Keyword raw: {}'.format(keyword))
+    log.info('[UB] Keyword raw: {}'.format(keyword))
     raw_keyword = request.GET.get('keyword')
-    log.info('Keyword in: {}'.format(raw_keyword))
+    log.info('[UB] Keyword in: {}'.format(raw_keyword))
     euckr_keyword = raw_keyword.encode('euc-kr')
-    log.info('Keyword encoded: {}'.format(euckr_keyword))
+    log.info('[UB] Keyword encoded: {}'.format(euckr_keyword))
     req_builder = RequestBuilder()
     branches = {'STORE_NAME_GANGNAM': Category.stores['STORE_NAME_GANGNAM'],
                 'STORE_NAME_BUNDANG': Category.stores['STORE_NAME_BUNDANG']}
@@ -36,7 +36,7 @@ def get_used_book(request, keyword='key'):
         book_parser = BookParser(res)
         found = book_parser.parse()
 
-        log.info('Searching for books in Branch {}'.format(name))
+        log.info('[UB] Searching for books in Branch {}'.format(name))
         response_str.append(name)
         for line in found:
             response_str.append(line)
