@@ -4,8 +4,8 @@ import logging
 from urllib.parse import urlencode
 from urllib.request import urlretrieve
 
-from BookParser import *
-from Category import *
+from .BookParser import *
+from .Category import *
 
 
 logging.basicConfig(level=logging.INFO)
